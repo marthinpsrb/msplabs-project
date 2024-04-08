@@ -1,0 +1,19 @@
+name: msplabs
+
+packages:
+  - apps/**
+  - shared_component/**
+
+scripts:
+  pub:get:
+    run: |
+      melos exec -c 2 --fail-fast -- \
+        exec fvm flutter pub get
+    select-package:
+      dir-exists:
+        - lib
+    description: |
+      Get dependencies in all packages
+      
+  analyze:
+    exec: dart analyze .
