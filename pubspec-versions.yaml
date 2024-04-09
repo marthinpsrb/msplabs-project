@@ -1,0 +1,12 @@
+dependencies:
+  dio: ^5.4.2+1
+  retrofit: ^4.1.0
+  get_it: ^7.6.8
+
+dev_dependencies:
+  mockito: 5.4.1
+  flutter_lints: ^3.0.0
+  test: ^1.16.0
+
+dependency_overrides:
+  mockito: 5.4.1

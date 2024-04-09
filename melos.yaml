@@ -1,19 +1,37 @@
 name: msplabs
 
 packages:
-  - apps/**
-  - shared_component/**
+  - '**'
+ignore:
+  - '.*/**'
 
 scripts:
   pub:get:
     run: |
       melos exec -c 2 --fail-fast -- \
         exec fvm flutter pub get
-    select-package:
-      dir-exists:
-        - lib
+    packageFilters:
+      flutter: true
     description: |
       Get dependencies in all packages
       
   analyze:
     exec: dart analyze .
+  
+  examine:dependencies:
+    run: |
+      melos exec -c 2 --fail-fast -- \
+        dart run $MELOS_ROOT_PATH/scripts/depedency_management/check_dependency_version.dart $MELOS_ROOT_PATH/pubspec-versions.yaml
+    description: |
+      Checks for dependency versions and missing dependencies in dependencies-versions.yaml compared to pubspec.yaml
+  
+  unify:dependencies:formatted:
+    run: |
+      melos exec --fail-fast --dir-exists=lib -- \
+        "yq ea -i -P 'select(fileIndex == 0) *? select(fileIndex == 1)' pubspec.yaml $MELOS_ROOT_PATH/pubspec-versions.yaml && dart run '$MELOS_ROOT_PATH/scripts/depedency_management/format_yaml.dart' 'pubspec.yaml'"
+    packageFilters:
+      flutter: true
+      file-exists:
+        - pubspec.yaml
+    description: |
+      Replace dependencies in all pubspec files with the one mentioned in dependencies-versions.yaml file and formats the file
