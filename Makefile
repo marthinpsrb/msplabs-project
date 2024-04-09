@@ -16,12 +16,14 @@ remove_unused_files:
 	@- rm -rf $(SHARED_COMPONENTS)/$(PACKAGE_NAME)/.metadata
 	@- rm -rf $(SHARED_COMPONENTS)/$(PACKAGE_NAME)/.gitignore
 	@- rm -rf $(SHARED_COMPONENTS)/$(PACKAGE_NAME)/.dart_tool
-	@- rm -rf $(SHARED_COMPONENTS)/$(PACKAGE_NAME)/.
+	@- rm -rf $(SHARED_COMPONENTS)/$(PACKAGE_NAME)/.idea
 
 help:
 	@echo "Usage:"
-	@echo " * create_package   - Create Flutter package and remove unused files"
-	@echo " * help         	   - Show this help message"
+	@echo " * make create_package PACKAGE_NAME=<package_name>"
+	@echo " 	===>>> To generate new package"
+	@echo " * make help"
+	@echo " 	===>>> Show list available command"
 
 ifeq ($(PACKAGE_NAME),)
 create_package:
