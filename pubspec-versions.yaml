@@ -2,6 +2,7 @@ dependencies:
   dio: ^5.4.2+1
   retrofit: ^4.1.0
   get_it: ^7.6.8
+  cupertino_icons: ^1.0.6
 
 dev_dependencies:
   mockito: 5.4.1

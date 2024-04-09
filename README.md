@@ -15,6 +15,13 @@ Reference: https://melos.invertase.dev/getting-started#setup
 dart pub global activate melos
 ```
 
+## Dependencies Installation
+
+Install yq
+```
+brew install yq
+```
+
 ## Creating New Package
 
 To create new package run this command:
